@@ -123,60 +123,41 @@ class Dashboard extends Admin_Controller {
         $this->data['pie_mix'] = json_encode($piemix);
 
         $user_id = $this->session->userdata('id');
-        $is_admin = ($user_id == 1) ? true : false;
+        $is_admin = ($user_id == 1 or $user_id == 9) ? true : false;
 
         $this->data['is_admin'] = $is_admin;
         $this->render_template('dashboard', $this->data);
     }
     
     public function woChartPDF() {
-        
-        $list_wos = $this->model_workorder->dashboardWorkorder();
-        $arr_wo = array();
-        $wait = 0;
-        $reject = 0;
-        $approve = 0;
-        $done = 0;
-        foreach ($list_wos as $list_wo) {
-            if ($list_wo['status'] == 'Waiting Approval') {
-                $wait++;
-                $arr_wo[$list_wo['status']] = $wait;
-            } else if ($list_wo['status'] == 'Approved') {
-                $approve++;
-                $arr_wo[$list_wo['status']] = $approve;
-            } else if ($list_wo['status'] == 'Rejected') {
-                $reject++;
-                $arr_wo[$list_wo['status']] = $reject;
-            } else {
-                $done++;
-                $arr_wo[$list_wo['status']] = $done;
-            }
-        }
-
-        $piewo = array();
-        foreach ($arr_wo as $key => $value) {
-            $object = new stdClass();
-            $object->value = $value;
-            $object->label = $key;
-            if ($key == 'Rejected') {
-                $object->color = '#f56954';
-                $object->highlight = '#f56954';
-            } elseif ($key == 'Done') {
-                $object->color = '#00a65a';
-                $object->highlight = '#00a65a';
-            } elseif ($key == 'Waiting Approval') {
-                $object->color = '#f39c12';
-                $object->highlight = '#f39c12';
-            } else {
-                $object->color = '#3c8dbc';
-                $object->highlight = '#3c8dbc';
-            }
-
-            $piewo[] = $object;
-        }
-        $this->data['pie_wo'] = json_encode($piewo);
-        
-        $this->load->view('dashboard/wo_chart_pdf', $this->data);
+        $image = $this->input->post('imagewo');
+        $data = array(
+            'image' => $image,
+            'page_total' => $this->pdf->get_canvas()->get_page_count()
+        );
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "Workorder-Chart.pdf";
+        $this->pdf->load_view('dashboard/wo_chart_pdf', $data);
+    }
+    public function otChartPDF() {
+        $image = $this->input->post('imageot');
+        $data = array(
+            'image' => $image,
+            'page_total' => $this->pdf->get_canvas()->get_page_count()
+        );
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "Overtime-Chart.pdf";
+        $this->pdf->load_view('dashboard/ot_chart_pdf', $data);
+    }
+    public function mixChartPDF() {
+        $image = $this->input->post('imagemix');
+        $data = array(
+            'image' => $image,
+            'page_total' => $this->pdf->get_canvas()->get_page_count()
+        );
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "mix-Chart.pdf";
+        $this->pdf->load_view('dashboard/mix_chart_pdf', $data);
     }
 
 }

@@ -1,4 +1,12 @@
-
+<form id="form_wo" target="_blank" action="<?= base_url('dashboard/woChartPDF/') ?>"  method="post">
+    <input type="hidden" id="imagewo" name="imagewo">
+</form>
+<form id="form_ot" target="_blank" action="<?= base_url('dashboard/otChartPDF/') ?>"  method="post">
+    <input type="hidden" id="imageot" name="imageot">
+</form>
+<form id="form_mix" target="_blank" action="<?= base_url('dashboard/mixChartPDF/') ?>"  method="post">
+    <input type="hidden" id="imagemix" name="imagemix">
+</form>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -93,9 +101,13 @@
     $(document).ready(function () {
         $("#dashboardMainMenu").addClass('active');
     });
-    function done() {
-        var url = '<?= base_url('dashboard/woPDF/')?>' + document.getElementById("workorderChart").toDataURL();
-        $('#print_wo').attr('href',url);
+
+    $('#print_wo').on('click', function () {
+        $('#form_wo').submit();
+    });
+    function donewo() {
+        var image = document.getElementById("workorderChart").toDataURL();
+        $('#imagewo').attr('value', image);
     }
     //-------------
     //- PIE CHART -
@@ -139,16 +151,23 @@
         //String - A legend template
         legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
         bezierCurve: false,
-        onAnimationComplete: done
+        onAnimationComplete: donewo
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
     pieChart.Doughnut(PieData, pieOptions)
     //console.log(pieChartCanvas.toDataURL());
-    
+
 </script>
 <!--Overtime-->
 <script type="text/javascript">
+    $('#print_ot').on('click', function () {
+        $('#form_ot').submit();
+    });
+    function doneot() {
+        var image = document.getElementById("overtimeChart").toDataURL();
+        $('#imageot').attr('value', image);
+    }
     //-------------
     //- PIE CHART -
     //-------------
@@ -189,7 +208,9 @@
         // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
         maintainAspectRatio: true,
         //String - A legend template
-        legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+        legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
+        bezierCurve: false,
+        onAnimationComplete: doneot
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
@@ -197,6 +218,13 @@
 </script>
 <!--Mix-->
 <script type="text/javascript">
+    $('#print_mix').on('click', function () {
+        $('#form_mix').submit();
+    });
+    function donemix() {
+        var image = document.getElementById("overtimeMix").toDataURL();
+        $('#imagemix').attr('value', image);
+    }
     //-------------
     //- PIE CHART -
     //-------------
@@ -237,7 +265,9 @@
         // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
         maintainAspectRatio: true,
         //String - A legend template
-        legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+        legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
+        bezierCurve: false,
+        onAnimationComplete: donemix
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.

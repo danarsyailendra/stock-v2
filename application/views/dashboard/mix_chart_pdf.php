@@ -70,7 +70,7 @@
                 </td>
                 <td class="text-center">
                     PT. Finnet Indonesia<br>
-                    Workorder Chart<br>
+                    Approved Workoder and Overtime Chart<br>
                     Telkom Landmark Tower, Jl. Gatot Subroto kav. 52, Jakarta Selatan, Jakarta 12710<br>
                     Telepon: (021) 8299999
                 </td>
@@ -91,7 +91,7 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">Hal</td>
-                    <td>: Workorder Chart</td>
+                    <td>: Approved Workoder and Overtime Chart</td>
                     <td></td>
                 </tr>
             </table>
@@ -103,20 +103,12 @@
         <div class="text-center">
             <table>
                 <tr>
-                    <td style="background-color: #3c8dbc">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Approved</td>
+                    <td style="background-color: #ff851b">&nbsp;&nbsp;&nbsp;</td>
+                    <td> Overtime</td>
                 </tr>
                 <tr>
-                    <td style="background-color: #f56954">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Rejected</td>
-                </tr>
-                <tr>
-                    <td style="background-color: #00a65a">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Done</td>
-                </tr>
-                <tr>
-                    <td style="background-color: #f39c12">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Waiting Approval</td>
+                    <td style="background-color: #D81B60">&nbsp;&nbsp;&nbsp;</td>
+                    <td> Workorder</td>
                 </tr>
             </table>
         </div>
