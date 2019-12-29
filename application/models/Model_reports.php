@@ -81,7 +81,7 @@ class Model_reports extends CI_Model {
     }
     
     public function getKaryawanData() {
-        $sql = "select nik,email,firstname,lastname,phone,gender from users";
+        $sql = "select nik,email,firstname,lastname,phone,b.gender_name gender from users a inner join gender b on a.gender = b.gender_id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
