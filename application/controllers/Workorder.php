@@ -191,9 +191,9 @@ class Workorder extends Admin_Controller {
                 'input_date' => $this->input->post('input_date'),
                 'deadline' => $this->input->post('deadline'),
                 'catatan' => $this->input->post('catatan'),
-                'backend' => $this->input->post('backend'),
-                'frontend' => $this->input->post('frontend'),
-                'qa' => $this->input->post('qa'),
+                'backend_days' => $this->input->post('backend'),
+                'frontend_days' => $this->input->post('frontend'),
+                'qa_days' => $this->input->post('qa'),
             );
             if ($_FILES['workorder_image']['size'] > 0) {
                 $upload_image = $this->upload_image();
@@ -307,6 +307,9 @@ class Workorder extends Admin_Controller {
         $this->form_validation->set_rules('input_date', 'Tanggal Input', 'trim|required');
         $this->form_validation->set_rules('deadline', 'Deadline', 'trim|required');
         $this->form_validation->set_rules('catatan', 'catatan', 'trim|required');
+        $this->form_validation->set_rules('backend', 'backend', 'trim|required');
+        $this->form_validation->set_rules('frontend', 'frontend', 'trim|required');
+        $this->form_validation->set_rules('qa', 'qa', 'trim|required');
 
         if ($this->form_validation->run() == TRUE) {
             // true case
@@ -321,6 +324,9 @@ class Workorder extends Admin_Controller {
                 'input_date' => $this->input->post('input_date'),
                 'deadline' => $this->input->post('deadline'),
                 'catatan' => $this->input->post('catatan'),
+                'backend_days' => $this->input->post('backend'),
+                'frontend_days' => $this->input->post('frontend'),
+                'qa_days' => $this->input->post('qa'),
             );
 
 

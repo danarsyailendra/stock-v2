@@ -38,7 +38,7 @@
                         <h3 class="box-title">Edit Work Order</h3>
                     </div>
                     <!-- /.box-header -->
-                    <form role="form" action="<?php echo base_url('workorder/update/'.$workorder_data['id']) ?>" method="post" enctype="multipart/form-data">
+                    <form role="form" action="<?php echo base_url('workorder/update/' . $workorder_data['id']) ?>" method="post" enctype="multipart/form-data">
                         <div class="box-body">
 
                             <?php echo validation_errors(); ?>
@@ -115,6 +115,20 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="backend">Backend</label>
+                                <input type="number" class="form-control" id="backend" name="backend" placeholder="Enter Backend" autocomplete="off" value="<?php echo $workorder_data['backend_days']; ?>"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="frontend">Frontend</label>
+                                <input type="number" class="form-control" id="frontend" name="frontend" placeholder="Enter Frontend" autocomplete="off" value="<?php echo $workorder_data['frontend_days']; ?>"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="qa">QA</label>
+                                <input type="number" class="form-control" id="qa" name="qa" placeholder="Enter QA" autocomplete="off" value="<?php echo $workorder_data['qa_days']; ?>"/>
+                            </div>
+
+
+                            <div class="form-group">
                                 <label for="catatan">catatan</label>
                                 <textarea type="text" class="form-control" id="catatan" name="catatan" placeholder="Enter 
                                           catatan" autocomplete="off">
@@ -160,12 +174,12 @@
 <!-- /.content-wrapper -->
 
 <script type="text/javascript">
-    
+
     $(document).ready(function () {
         $(".select_group").select2();
         $("#description").wysihtml5();
         $(".datepicker").datepicker({
-           autoclose:true 
+            autoclose: true
         });
 
         $("#mainWorkorderNav").addClass('active');
