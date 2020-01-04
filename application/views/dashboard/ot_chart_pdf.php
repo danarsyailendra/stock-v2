@@ -70,7 +70,7 @@
                 </td>
                 <td class="text-center">
                     PT. Finnet Indonesia<br>
-                    Overtime Chart<br>
+                    Overtime<br>
                     Telkom Landmark Tower, Jl. Gatot Subroto kav. 52, Jakarta Selatan, Jakarta 12710<br>
                     Telepon: (021) 8299999
                 </td>
@@ -81,7 +81,7 @@
             <table class="" style="width: 100%;border: 0px">
                 <tr>
                     <td style="width: 10%">Nomor</td>
-                    <td>:</td>
+                    <td>: <?=$number?></td>
                     <td class="pull-right" style="width: 15%"><?= date('d-m-Y') ?></td>
                 </tr>
                 <tr>
@@ -89,33 +89,26 @@
                     <td>: -</td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td style="width: 10%">Hal</td>
-                    <td>: Overtime Chart</td>
-                    <td></td>
-                </tr>
             </table>
         </div>
         <div class="text-center">
-            <br>
-            <img src="<?=$image?>">
-        </div>
-        <div class="text-center">
-            <table>
-                <tr>
-                    <td style="background-color: #f56954">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Rejected</td>
+            <h3>Overtime</h3>
+            <table class="table table-bordered">
+                <tr> 
+                    <th>Status</th>
+                    <th>Jumlah</th> 
                 </tr>
-                <tr>
-                    <td style="background-color: #00a65a">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Done</td>
-                </tr>
-                <tr>
-                    <td style="background-color: #f39c12">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Waiting Approval</td>
-                </tr>
+                <?php
+                foreach ($arr_lembur as $key => $value) {
+                    ?>
+                    <tr>
+                        <td><?= $key ?></td>
+                        <td><?= $value ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </table>
         </div>
-
     </body>
 </html>

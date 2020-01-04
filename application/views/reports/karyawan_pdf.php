@@ -81,7 +81,7 @@
             <table class="" style="width: 100%;border: 0px">
                 <tr>
                     <td style="width: 10%">Nomor</td>
-                    <td>:</td>
+                    <td>: <?=$number?></td>
                     <td class="pull-right" style="width: 15%"><?= date('d-m-Y') ?></td>
                 </tr>
                 <tr>
@@ -89,14 +89,10 @@
                     <td>: -</td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td style="width: 10%">Hal</td>
-                    <td>: Report Karyawan</td>
-                    <td></td>
-                </tr>
             </table>
         </div>
         <div class="text-center">
+            <h3>Report Karyawan</h3>
             <table class="table table-bordered">
                 <tr>
                     <th>NIK</th>

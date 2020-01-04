@@ -43,7 +43,9 @@
                     <div class="box-header">
                         <h3 class="box-title">Manage Work Orders</h3>
                         <div class="box-tools">
+                            <?php if (in_array('sortWorkorder', $user_permission)): ?>
                             <button id="sort" class="btn btn-primary">Sort CDS</button>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <!-- /.box-header -->

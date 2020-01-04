@@ -62,6 +62,7 @@
                         <th>Approve</th>
                         <th>Only View Approved</th>
                         <th>Done WO</th>
+                        <th>Sort WO</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -85,6 +86,7 @@
                           if(in_array('deleteUser', $serialize_permission)) { echo "checked"; }  
                         }
                          ?>></td>
+                        <td> - </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -114,6 +116,7 @@
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
+                        <td> - </td>
                       </tr>
                       <tr>
                         <td>Channel</td>
@@ -132,6 +135,7 @@
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
+                        <td> - </td>
                       </tr>
                       <tr>
                         <td>Produk</td>
@@ -147,6 +151,7 @@
                         <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="deleteProduk" <?php if($serialize_permission) {
                           if(in_array('deleteProduk', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
+                        <td> - </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -175,6 +180,9 @@
                         <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="doneWorkorder" <?php if($serialize_permission) {
                           if(in_array('doneWorkorder', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="sortWorkorder" <?php if($serialize_permission) {
+                          if(in_array('sortWorkorder', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
                       </tr>
                       <tr>
                         <td>Overtime</td>
@@ -197,6 +205,7 @@
                           if(in_array('OnlyViewLembur', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
                         <td> - </td>
+                        <td> - </td>
                       </tr>
                       <tr>
                         <td>Reports</td>
@@ -209,6 +218,7 @@
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
+                        <td> - </td>
                       </tr>
                       <tr>
                         <td>Company</td>
@@ -216,6 +226,7 @@
                         <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateCompany" <?php if($serialize_permission) {
                           if(in_array('updateCompany', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
+                        <td> - </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -233,6 +244,7 @@
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
+                        <td> - </td>
                       </tr>
                       <tr>
                         <td>Setting</td>
@@ -240,6 +252,7 @@
                         <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateSetting" <?php if($serialize_permission) {
                           if(in_array('updateSetting', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
+                        <td> - </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>

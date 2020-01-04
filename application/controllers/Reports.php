@@ -6,7 +6,7 @@ class Reports extends Admin_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->data['page_title'] = 'Stores';
+        $this->data['page_title'] = 'Reports';
         $this->load->model('model_reports');
         $this->load->model('model_workorder');
     }
@@ -94,11 +94,16 @@ class Reports extends Admin_Controller {
         $year = $this->input->post('year_wo');
         $wo_data = $this->model_reports->getWorkorderData($year);
         $this->load->library('Pdf');
-
+        $number = $this->model_reports->getNumberWO()['report_wo']+1;
+        $arr_number = array(
+          "report_wo" => $number  
+        );
+        $this->model_reports->updateNumberWO($arr_number);
         $data = array(
             'wo_data' => $wo_data,
             'year' => $year,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTWO/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Workorder-$year.pdf";
@@ -142,6 +147,11 @@ class Reports extends Admin_Controller {
         $year = $this->input->post('year_ot');
         $ot_data = $this->model_reports->getOvertimeData($year);
         $this->load->library('Pdf');
+        $number = $this->model_reports->getNumberOT()['report_ot']+1;
+        $arr_number = array(
+          "report_ot" => $number  
+        );
+        $this->model_reports->updateNumberOT($arr_number);
 
         foreach ($ot_data as $key => $value) {
             if ($value['wo_name_overtime'] != 'null') {
@@ -158,7 +168,8 @@ class Reports extends Admin_Controller {
         $data = array(
             'ot_data' => $ot_data,
             'year' => $year,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTLMBR/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Overtime-$year.pdf";
@@ -183,10 +194,16 @@ class Reports extends Admin_Controller {
     public function karyawanPDF() {
         $karyawanDatas = $this->model_reports->getKaryawanData();
         $this->load->library('Pdf');
-
+        $number = $this->model_reports->getNumberKaryawan()['report_karyawan']+1;
+        $arr_number = array(
+          "report_karyawan" => $number  
+        );
+        $this->model_reports->updateNumberKaryawan($arr_number);
+        
         $data = array(
             'karyawan_data' => $karyawanDatas,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTKYWN/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Karyawan.pdf";
@@ -209,10 +226,16 @@ class Reports extends Admin_Controller {
     public function channelPDF() {
         $channelDatas = $this->model_reports->getChannelData();
         $this->load->library('Pdf');
+        $number = $this->model_reports->getNumberChannel()['report_channel']+1;
+        $arr_number = array(
+          "report_channel" => $number  
+        );
+        $this->model_reports->updateNumberChannel($arr_number);
 
         $data = array(
             'channel_datas' => $channelDatas,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTCHNL/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Channel.pdf";
@@ -236,10 +259,16 @@ class Reports extends Admin_Controller {
     public function productPDF() {
         $produkDatas = $this->model_reports->getProductData();
         $this->load->library('Pdf');
+        $number = $this->model_reports->getNumberProduct()['report_product']+1;
+        $arr_number = array(
+          "report_product" => $number  
+        );
+        $this->model_reports->updateNumberProduct($arr_number);
 
         $data = array(
             'produk_datas' => $produkDatas,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTPRDK/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Produk.pdf";
@@ -263,10 +292,16 @@ class Reports extends Admin_Controller {
     public function groupPDF() {
         $groupDatas = $this->model_reports->getGroupData();
         $this->load->library('Pdf');
+        $number = $this->model_reports->getNumberGroup()['report_group']+1;
+        $arr_number = array(
+          "report_group" => $number  
+        );
+        $this->model_reports->updateNumberGroup($arr_number);
 
         $data = array(
             'group_datas' => $groupDatas,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTUSGP/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Group.pdf";

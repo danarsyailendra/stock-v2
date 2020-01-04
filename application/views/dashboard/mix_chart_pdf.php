@@ -81,7 +81,7 @@
             <table class="" style="width: 100%;border: 0px">
                 <tr>
                     <td style="width: 10%">Nomor</td>
-                    <td>:</td>
+                    <td>: <?=$number?></td>
                     <td class="pull-right" style="width: 15%"><?= date('d-m-Y') ?></td>
                 </tr>
                 <tr>
@@ -89,29 +89,26 @@
                     <td>: -</td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td style="width: 10%">Hal</td>
-                    <td>: Approved Workoder and Overtime Chart</td>
-                    <td></td>
-                </tr>
             </table>
         </div>
         <div class="text-center">
-            <br>
-            <img src="<?=$image?>">
-        </div>
-        <div class="text-center">
-            <table>
-                <tr>
-                    <td style="background-color: #ff851b">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Overtime</td>
+            <h3>Approved Workoder and Overtime</h3>
+            <table class="table table-bordered">
+                <tr> 
+                    <th>Status</th>
+                    <th>Jumlah</th> 
                 </tr>
-                <tr>
-                    <td style="background-color: #D81B60">&nbsp;&nbsp;&nbsp;</td>
-                    <td> Workorder</td>
-                </tr>
+                <?php
+                foreach ($arr_mix as $key => $value) {
+                    ?>
+                    <tr>
+                        <td><?= $value['status'] ?></td>
+                        <td><?= $value['jumlah'] ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </table>
         </div>
-
     </body>
 </html>

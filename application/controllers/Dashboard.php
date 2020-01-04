@@ -130,30 +130,85 @@ class Dashboard extends Admin_Controller {
     }
     
     public function woChartPDF() {
-        $image = $this->input->post('imagewo');
+        $list_wos = $this->model_workorder->dashboardWorkorder();
+        $arr_wo = array();
+        $wait = 0;
+        $reject = 0;
+        $approve = 0;
+        $done = 0;
+        foreach ($list_wos as $list_wo) {
+            if ($list_wo['status'] == 'Waiting Approval') {
+                $wait++;
+                $arr_wo[$list_wo['status']] = $wait;
+            } else if ($list_wo['status'] == 'Approved') {
+                $approve++;
+                $arr_wo[$list_wo['status']] = $approve;
+            } else if ($list_wo['status'] == 'Rejected') {
+                $reject++;
+                $arr_wo[$list_wo['status']] = $reject;
+            } else {
+                $done++;
+                $arr_wo[$list_wo['status']] = $done;
+            }
+        }
+        $number = $this->model_workorder->getNumberCWO()['report_cwo']+1;
+        $arr_number = array(
+          "report_cwo" => $number  
+        );
+        $this->model_workorder->updateNumberCWO($arr_number);
         $data = array(
-            'image' => $image,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'arr_wo' => $arr_wo,
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTCWO/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Workorder-Chart.pdf";
         $this->pdf->load_view('dashboard/wo_chart_pdf', $data);
     }
     public function otChartPDF() {
-        $image = $this->input->post('imageot');
+        $list_lemburs = $this->model_lembur->dashboardLembur();
+        $arr_lembur = array();
+        $wait = 0;
+        $reject = 0;
+        $approve = 0;
+        foreach ($list_lemburs as $list_lembur) {
+            if ($list_lembur['status_desc'] == 'Waiting Approval') {
+                $wait++;
+                $arr_lembur[$list_lembur['status_desc']] = $wait;
+            } else if ($list_lembur['status_desc'] == 'Approved') {
+                $approve++;
+                $arr_lembur[$list_lembur['status_desc']] = $approve;
+            } else if ($list_lembur['status_desc'] == 'Rejected') {
+                $reject++;
+                $arr_lembur[$list_lembur['status_desc']] = $reject;
+            }
+        }
+        $number = $this->model_lembur->getNumberCOT()['report_cot']+1;
+        $arr_number = array(
+          "report_cot" => $number  
+        );
+        $this->model_lembur->updateNumberCOT($arr_number);
         $data = array(
-            'image' => $image,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'arr_lembur' => $arr_lembur,
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTCLMBR/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Overtime-Chart.pdf";
         $this->pdf->load_view('dashboard/ot_chart_pdf', $data);
     }
     public function mixChartPDF() {
-        $image = $this->input->post('imagemix');
+        $arr_mix = $this->model_workorder->dashboardMix();
+        
+        $number = $this->model_workorder->getNumberCMIX()['report_cmix']+1;
+        $arr_number = array(
+          "report_cmix" => $number  
+        );
+        $this->model_workorder->updateNumberCMIX($arr_number);
         $data = array(
-            'image' => $image,
-            'page_total' => $this->pdf->get_canvas()->get_page_count()
+            'arr_mix' => $arr_mix,
+            'page_total' => $this->pdf->get_canvas()->get_page_count(),
+            'number' => 'FINNET/'.$number.'/RPTCMIX/'.date('Y')
         );
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "mix-Chart.pdf";

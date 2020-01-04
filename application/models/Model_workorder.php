@@ -103,4 +103,30 @@ class Model_workorder extends CI_Model {
         return $query->result_array();
     }
 
+    public function getNumberCWO() {
+        $sql = "select report_cwo from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberCWO($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+    public function getNumberCMIX() {
+        $sql = "select report_cmix from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberCMIX($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
 }

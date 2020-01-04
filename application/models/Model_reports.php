@@ -103,4 +103,88 @@ class Model_reports extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+    
+    public function getNumberWO() {
+        $sql = "select report_wo from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberWO($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+    
+    public function getNumberOT() {
+        $sql = "select report_ot from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberOT($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+    
+    public function getNumberKaryawan() {
+        $sql = "select report_karyawan from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberKaryawan($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+    
+    public function getNumberChannel() {
+        $sql = "select report_channel from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberChannel($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+    
+    public function getNumberProduct() {
+        $sql = "select report_product from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberProduct($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+    
+    public function getNumberGroup() {
+        $sql = "select report_group from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberGroup($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
 }

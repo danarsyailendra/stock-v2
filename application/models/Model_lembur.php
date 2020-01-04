@@ -81,4 +81,17 @@ class Model_lembur extends CI_Model {
         return $query->result_array();
     }
 
+    public function getNumberCOT() {
+        $sql = "select report_cot from report_count";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    
+    public function updateNumberCOT($data) {
+        if ($data){
+            $this->db->where('id', 0);
+            $update = $this->db->update('report_count', $data);
+            return ($update == true) ? true : false;
+        }
+    }
 }
