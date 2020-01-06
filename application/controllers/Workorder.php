@@ -81,10 +81,14 @@ class Workorder extends Admin_Controller {
             $input_date = new DateTime(date('d-m-Y', strtotime($value['input_date'])));
             $selisih = $input_date->diff($deadline);
             $qty_status = '';
-            if ($value['bobot'] <= 10) {
-                $qty_status = '<span class="label label-warning">Low !</span>';
+            if ($value['bobot'] >= 1 and $value['bobot'] <= 40) {
+                $qty_status = '<span class="label label-danger">Low !</span>';
             } else if ($value['bobot'] <= 0) {
                 $qty_status = '<span class="label label-danger">Out of stock !</span>';
+            } elseif ($value['bobot'] >= 41 and $value['bobot'] <= 70) {
+                $qty_status = '<span class="label label-warning">Medium</span>';
+            } elseif ($value['bobot'] >= 71) {
+                $qty_status = '<span class="label label-success">High</span>';
             }
             // $img = "test";
             if ($value['status_desc'] == 'Waiting Approval') {
