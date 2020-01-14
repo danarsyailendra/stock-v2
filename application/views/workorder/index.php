@@ -214,7 +214,7 @@
             $(".btn-decision").on('click', function (e) {
                 //e.preventDefault();
                 var decision = $(this).html();
-
+                console.log(id);
                 var form = $('#approveForm');
                 $.ajax({
                     url: form.attr('action'),
@@ -227,7 +227,7 @@
                     success: function (response) {
 
                         manageTable.ajax.reload(null, false);
-
+                        id = '';
                         if (response.success === true) {
                             $("#messages").html('<div class="alert alert-success alert-dismissible" role="alert">' +
                                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
