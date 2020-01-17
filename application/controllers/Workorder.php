@@ -207,7 +207,7 @@ class Workorder extends Admin_Controller {
             }
 
             $cek_wo = $this->model_workorder->cekWo($this->input->post('nomor_wo'));
-            if ($cek_wo > 0) {
+            if ($cek_wo['jumlah'] > 0) {
                 echo "<script>alert('WO Number Already Exist!')</script>";
                 $this->session->set_flashdata('errors', 'WO Number Already Exist!');
                 redirect('workorder/create', 'refresh');
