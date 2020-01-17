@@ -110,6 +110,8 @@ class Workorder extends Admin_Controller {
                 $value['nomor_wo'],
                 $value['wo_name'],
                 $value['marketing_name'],
+                $value['input_date'],
+                $value['deadline'],
                 $qty_status,
                 $status_desc,
                 $buttons,
@@ -152,7 +154,7 @@ class Workorder extends Admin_Controller {
             $cds[$choosen_id] = '';
         }
         foreach ($result['data'] as $i => $data) {
-            $result['data'][$i][7] = $seq[$data[6]];
+            $result['data'][$i][9] = $seq[$data[8]];
         }
         
         echo json_encode($result);

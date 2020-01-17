@@ -56,6 +56,8 @@
                                     <th>Nomor WO</th>
                                     <th>Nama WO</th>
                                     <th>Nama Marketing</th>
+                                    <th>Start</th>
+                                    <th>Deadline</th>
                                     <th>Bobot</th>
                                     <th>Status</th>
                                     <?php if (in_array('updateWorkorder', $user_permission) || in_array('deleteWorkorder', $user_permission)): ?>
@@ -146,12 +148,12 @@
             'order': [],
             'columnDefs':[
                 {
-                    "targets":[6],
+                    "targets":[8],
                     "visible":false,
                     "searchable":false
                 },
                 {
-                    "targets":[7],
+                    "targets":[9],
                     "visible":false,
                     "searchable":false
                 }
