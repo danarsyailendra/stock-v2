@@ -156,7 +156,7 @@ class Workorder extends Admin_Controller {
         foreach ($result['data'] as $i => $data) {
             $result['data'][$i][9] = $seq[$data[8]];
         }
-        
+
         echo json_encode($result);
     }
 
@@ -205,7 +205,15 @@ class Workorder extends Admin_Controller {
                 $upload_image = $this->upload_image();
                 $data['lampiran'] = $upload_image;
             }
-            $create = $this->model_workorder->create($data);
+
+            $cek_wo = $this->model_workorder->cekWo($this->input->post('nomor_wo'));
+            if ($cek_wo > 0) {
+                echo "<script>alert('WO Number Already Exist!')</script>";
+                $this->session->set_flashdata('errors', 'WO Number Already Exist!');
+                redirect('workorder/create', 'refresh');
+            } else {
+                $create = $this->model_workorder->create($data);
+            }
             if ($create == true) {
                 $this->session->set_flashdata('success', 'Successfully created');
                 redirect('workorder/', 'refresh');
@@ -214,20 +222,7 @@ class Workorder extends Admin_Controller {
                 redirect('workorder/create', 'refresh');
             }
         } else {
-            // false case
-            // attributes 
-            $attribute_data = $this->model_attributes->getActiveAttributeData();
-
-            $attributes_final_data = array();
-            foreach ($attribute_data as $k => $v) {
-                $attributes_final_data[$k]['attribute_data'] = $v;
-
-                $value = $this->model_attributes->getAttributeValueData($v['id']);
-
-                $attributes_final_data[$k]['attribute_value'] = $value;
-            }
-
-            $this->data['attributes'] = $attributes_final_data;
+            // false case            
             $this->data['channel'] = $this->model_channel->getActiveChannel();
             $this->data['produk'] = $this->model_produk->getActiveProduk();
 

@@ -129,4 +129,12 @@ class Model_workorder extends CI_Model {
             return ($update == true) ? true : false;
         }
     }
+    
+    public function cekWo($wo_number) {
+        if ($wo_number) {
+            $sql = "SELECT count(*) FROM marketing WHERE nomor_wo =  ?";
+            $query = $this->db->query($sql, array($wo_number));
+            return $query->result_array();
+        }
+    }
 }
