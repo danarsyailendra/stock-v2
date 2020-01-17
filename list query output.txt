@@ -1,0 +1,9 @@
+Report WO = SELECT a.*,status_desc FROM marketing a INNER JOIN status_approval b on a.status_approval = b.id WHERE input_date LIKE ? ORDER BY id DESC
+Report Lembur = SELECT a.*,status_desc FROM lembur a INNER JOIN status_approval b on a.status = b.id WHERE tgl_mulai LIKE ? ORDER BY id DESC
+Report Karyawan = select nik,email,firstname,lastname,phone,b.gender_name gender from users a inner join gender b on a.gender = b.gender_id
+Report Channel = select name,nama_pic,no_hp from channel
+Report Product = select name from produk
+Report Group = select group_name from groups
+Dashboard WO = select a.id, case when done = 1 then 'Done' else b.status_desc end status from marketing a left join status_approval b on a.status_approval = b.id group by a.id
+Dashboard Lembur = select a.id,b.status_desc from lembur a inner join status_approval b on a.status = b.id
+Dashboard Mix = select 'Overtime' as status, count(id) jumlah from lembur where status = 1 UNION ALL select 'Workorder' as status, count(id) jumlah from marketing where status_approval = 1 or done = 1
